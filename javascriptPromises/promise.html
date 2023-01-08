@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise</title>
+</head>
+<body>
+    <script>
+        let isRainning=false;
+        let itsSunny=false;
+        const promises=new Promise((resolve,reject)=>{
+            if(isRainning){
+                resolve("the weather is rainy")
+            }
+            else if(itsSunny){
+                reject("it is not rainy")
+            }
+            else{
+                reject("there is no such weather pattern in this area")
+            }
+        })
+        promises.then((message)=>{
+            console.log("this is in the then part"+" "+message)
+        }).catch((message)=>{
+            console.log("this is in the catch part"+" "+message)
+        })
+        const video1=new Promise((resolve,reject)=>{
+             resolve("redord video1")
+        })
+        const video2=new Promise((resolve,reject)=>{
+             resolve("redord video2")
+        })
+        const video3=new Promise((resolve,reject)=>{
+             resolve("redord video3")
+        })
+        const video4=new Promise((resolve,reject)=>{
+             resolve("redord video4")
+        })
+        const video5=new Promise((resolve,reject)=>{
+             resolve("redord video5")
+        })
+        Promise.all([
+            video1,
+            video2,
+            video3,
+            video4,
+            video5
+        ]).then((message)=>{
+            console.log(message)
+        })
+    </script>
+</body>
+</html>

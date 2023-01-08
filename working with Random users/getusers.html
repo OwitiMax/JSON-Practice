@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get random users</title>
+    <style>
+        li{
+            list-style-type:decimal-leading-zero;
+            padding: 10px;
+        }
+        span{
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button id="Users">Get Users</button>
+    <ul id="userspace"></ul>
+    <script>
+        let btnUsers=document.querySelector("#Users")
+        let Userspace=document.querySelector("#userspace")
+        btnUsers.addEventListener("click",()=>{
+            const url="https://api.jsonbin.io/v3/b/63b295e201a72b59f23e5173"
+            fetch(url)
+            .then((response)=>{
+                console.log(response.status)
+                return response.json()
+            })
+            .then((data)=>{
+                let rslts=data.record.results
+                rslts.forEach(result => {
+                    let li=document.createElement("li")
+                    let fname=result.name.first.toUpperCase()
+                    let lname=result.name.last.toUpperCase()
+                    let title=result.name.title
+                    li.innerHTML=`${title} ${fname} ${lname}`
+                    let span=document.createElement("span")
+                    let image=document.createElement("img")
+                    image.src=result.picture.thumbnail
+                    let div=document.createElement('div')
+                    
+                    span.innerHTML=result.location.street.name
+                    Userspace.append(li)
+                    Userspace.append(image)
+                    li.append(span)
+                });
+                console.log(rslts)
+            })
+    
+        })
+    </script>
+</body>
+</html>

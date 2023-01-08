@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>using API</title>
+</head>
+<body>
+    <button id="fetch">Fetch Info</button>
+    <div id="output"></div>
+    <script>
+     let fetchbut=document.querySelector("#fetch")
+     let space=document.querySelector("#output")
+     fetchbut.addEventListener("click",()=>{
+        fetch("//api.jsonbin.io/v3/b/63b26acedfc68e59d575f214")
+        .then((response)=>{
+         console.log(response.status)
+         return response.json()
+        })
+        .then((data)=>{
+            console.log(data)
+        })
+     })
+     //find out what response.text() does and note that a default value data can be  passed in the .then() this entail the data from where the api is called from
+    </script>
+</body>
+</html>
